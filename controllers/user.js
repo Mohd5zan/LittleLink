@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 
 // app.use(cookieparser());
 
-
 async function handleregisterpage(req, res) {
   let { fullname, email, password } = req.body;
   // console.log(fullname, email, password);
@@ -37,7 +36,6 @@ async function handleregisterpage(req, res) {
   });
   res.redirect("/login");
 }
-
 
 async function handlelogin(req, res) {
   const { email, password } = req.body;
@@ -69,7 +67,10 @@ async function handlelogin(req, res) {
           "Invalid credentials. Please check your email and password.",
       });
     }
-    let token = jwt.sign({ email: email, userid: user._id }, process.env.JWT_SECRET);
+    let token = jwt.sign(
+      { email: email, userid: user._id },
+      process.env.JWT_SECRET,
+    );
     res.cookie("token", token);
 
     return res.redirect("/userpage");
@@ -81,7 +82,6 @@ async function handlelogin(req, res) {
     });
   }
 }
-
 
 module.exports = {
   handleregisterpage,
