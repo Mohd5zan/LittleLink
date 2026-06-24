@@ -21,6 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use((req, res, next) => {
+  res.locals.BASE_URL = process.env.BASE_URL;
+  next();
+});
+
 const staticrouter = require("./routes/static");
 const userrouter = require("./routes/user");
 const urlrouter = require("./routes/url");

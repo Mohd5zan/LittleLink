@@ -10,7 +10,7 @@ async function handlegenerateurl(req, res) {
     createdBy: req.user.userid,
   });
   res.render("userpage", {
-    shortUrl: `http://localhost:4000/url/${sid}`,
+    shortUrl: `${process.env.BASE_URL}/url/${sid}`,
   });
 }
 

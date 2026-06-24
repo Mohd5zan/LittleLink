@@ -6,8 +6,6 @@ function isLoggedin(req, res, next) {
     return res.redirect("/login");
   } else {
     let data = jwt.verify(token, process.env.JWT_SECRET);
-    
-    
     req.user = data;
   }
   next();
